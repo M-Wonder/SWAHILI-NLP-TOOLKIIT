@@ -10,7 +10,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from swahili_nlp.preprocessing import SwahiliTextPreprocessor
 
 
-def build_tfidf_vectorizer(
+def build_Tfidf_vectorizer(
          preprocessor: SwahiliTextPreprocessor | None = None,
     max_features: int = 5000,
     ngram_range: tuple[int, int] = (1, 2),
