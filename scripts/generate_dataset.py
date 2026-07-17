@@ -25,7 +25,7 @@ from __future__ import annotations
 import csv
 import itertools
 import random
-from pathlib import path
+from pathlib import Path
 
 random.seed(42)
 
@@ -120,12 +120,12 @@ ACTIONS = {
     ],
 }
 
-CONTEXT = {
+CONTEXT = [
      "wiki hii", "leo asubuhi", "jana jioni", "mwishoni mwa wiki",
     "mwezi huu", "katika mkutano wa hivi karibuni", "nchini Kenya",
     "nchini Tanzania", "mjini Nairobi", "mjini Dar es Salaam",
     "", "", "",  # allow some headlines without a trailing context
-}
+]
 
 def build_dataset() -> list[tuple[str, str]]:
     rows: list[tuple[str, str]] =[]
