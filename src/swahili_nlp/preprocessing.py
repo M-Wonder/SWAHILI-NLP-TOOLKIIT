@@ -43,3 +43,38 @@ class SwahiliTextPreprocessor:
     >>> pre.tokenize("Rais ametangaza bajeti mpya ya Serikali!")
     ['rais', 'ametangaza', 'bajeti', 'mpya', 'serikali']
     """
+    remove_stopwords: bool = True
+    min_token_length: int = 2
+    lowercase: bool = True
+    stopwords: frozenset[str] = field(default_factory=lambda: frozenset(SWAHILI_STOPWORDS)
+    )
+
+    def normalize(self, text: str) -> str:
+        if not isinstance(text, str):
+            raise TypeError(f"Expected str, got {type(text).__name__}")
+        normalized = text.strip()
+        if self.lowercase:
+            normalized = normalized.lower()
+        return normalized
+    
+    def tokenize(self, text: str) -> list[str]:
+        """Normalize, tokenize, and filter ``text`` into a list of tokens.
+
+        Punctuation and digits are dropped, tokens shorter than
+        ``min_token_length`` are removed, and stop words are removed if
+        ``remove_stopwords`` is ``True``.
+        """
+        normalized = self.normalize(text)
+        tokens = _TOKEN_PATTERN.findall(normalized)
+        tokens = [t for t in tokens if len(t) >= self.min_token_length]
+        if self.remove_stopwords:
+            tokens = [t for t in tokens if t not in self.stopwords]
+        return tokens
+    
+def preprocess(self, text: str) -> str:
+    """return a cleaned , space-jointed string suitable for a vectorizer"""
+    return " ".join(self.tokenize(text  ))
+
+def preprocess__batch(self, texts: list[str]) -> list[str]:
+        """Vectorized convenience wrapper around :meth:`preprocess`."""
+        return [self.preprocess(t) for t in texts]
