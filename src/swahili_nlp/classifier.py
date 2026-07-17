@@ -16,7 +16,7 @@ import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
-from swahili_nlp.features import build_tfidf_vectorizer
+from swahili_nlp.features import build_Tfidf_vectorizer
 from swahili_nlp.preprocessing import SwahiliTextPreprocessor
 
 logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class SwahiliNewsClassifier:
         random_state: int = 42,
     ) -> None:
         self.preprocessor = preprocessor or SwahiliTextPreprocessor()
-        vectorizer = build_tfidf_vectorizer(
+        vectorizer = build_Tfidf_vectorizer(
             self.preprocessor, max_features=max_features
         )
         self.pipeline: Pipeline = Pipeline(

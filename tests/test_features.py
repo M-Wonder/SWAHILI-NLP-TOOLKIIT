@@ -1,8 +1,8 @@
-from swahili_nlp.features import build_tfidf_vectorizer
+from swahili_nlp.features import build_Tfidf_vectorizer
 
 
 def test_vectorizer_fits_and_transforms() -> None:
-    vectorizer = build_tfidf_vectorizer(max_features=100)
+    vectorizer = build_Tfidf_vectorizer(max_features=100)
     corpus = [
         "Rais ametangaza sera mpya ya elimu",
         "Timu ya taifa imeshinda mechi ya kirafiki",
@@ -14,7 +14,7 @@ def test_vectorizer_fits_and_transforms() -> None:
 
 
 def test_vectorizer_respects_max_features() -> None:
-    vectorizer = build_tfidf_vectorizer(max_features=5)
+    vectorizer = build_Tfidf_vectorizer(max_features=5)
     corpus = [
         "Rais ametangaza sera mpya ya elimu leo",
         "Timu ya taifa imeshinda mechi ya kirafiki jana",
@@ -25,7 +25,7 @@ def test_vectorizer_respects_max_features() -> None:
 
 
 def test_vectorizer_applies_custom_tokenizer_stopword_removal() -> None:
-    vectorizer = build_tfidf_vectorizer()
+    vectorizer = build_Tfidf_vectorizer()
     vectorizer.fit(["Rais na waziri wa mambo ya ndani"])
     vocab = set(vectorizer.vocabulary_.keys())
     # single-token stopwords like "na"/"wa"/"ya" should not appear as unigrams
