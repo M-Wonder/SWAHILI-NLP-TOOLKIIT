@@ -5,7 +5,7 @@ numeric vectors suitable for scikit-learn estimators.
 
 from __future__ import annotations
 
-from sklearn.feature_extraction.text import tfidf_vectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 from swahili_nlp.preprocessing import SwahiliTextPreprocessor
 
