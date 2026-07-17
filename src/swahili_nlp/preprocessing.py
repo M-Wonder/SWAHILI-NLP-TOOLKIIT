@@ -71,10 +71,12 @@ class SwahiliTextPreprocessor:
             tokens = [t for t in tokens if t not in self.stopwords]
         return tokens
     
-def preprocess(self, text: str) -> str:
-    """return a cleaned , space-jointed string suitable for a vectorizer"""
-    return " ".join(self.tokenize(text  ))
+    def preprocess(self, text):
+        tokens = self.tokenize(text)
+        return " ".join(tokens)
+    
+    def preprocess_batch(self, texts):
+        return [self.preprocess(text) for text in texts]
 
-def preprocess__batch(self, texts: list[str]) -> list[str]:
-        """Vectorized convenience wrapper around :meth:`preprocess`."""
-        return [self.preprocess(t) for t in texts]
+
+
